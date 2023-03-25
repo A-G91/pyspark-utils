@@ -8,6 +8,9 @@ def test_get_weights_no_remainder():
 def test_get_weights_with_remainder():
     assert main.get_weights(1000000, 70000) == [0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.07, 0.02]
 
+def test_get_weights_when_partition_size_is_large_than_dataframe():
+    assert main.get_weights(10000, 100000) == [1]
+    
 def test_weights_sum_to_one():
 
     num_tests = 1000
