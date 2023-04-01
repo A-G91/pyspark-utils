@@ -12,6 +12,7 @@ def get_weights(dataframe_size: int, partition_size: int) -> list:
         weight = 0.01
 
     num_partitions = 1 / weight
+    print(weight, num_partitions)
     if num_partitions.is_integer():
         return [weight] * int(num_partitions)
     
