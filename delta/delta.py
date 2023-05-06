@@ -31,6 +31,10 @@ class DeltaHelper:
 
 
     def get_delta(self, current_items: list, previous_items: list, id_field: str):
+        
+        if previous_items is None:
+            # If previous_items are empty, we cannot compute a delta.
+            return []
 
         current_info = {item[id_field]: item for item in current_items}
         previous_info = {item[id_field]: item for item in previous_items}
@@ -81,7 +85,9 @@ class DeltaHelper:
 
 if __name__ == "__main__":
     helper = DeltaHelper()
-    helper.write_delta(None, "id", "items", "mock.json")
+
+    d = utils.read_file("test-local", "current/mock.json")
+    helper.write_delta(d, "id", "items", "mock.json")
 
          
 
