@@ -1,7 +1,10 @@
 import math
 
+
 def get_weights(dataframe_size: int, partition_size: int) -> list:
-    '''Find the best weights to partition the dataframe based on the desired partition size. Weights are rounded to 2 decimal places.'''
+    '''
+    Find the best weights to partition the dataframe based on the desired partition size. Weights are rounded to 2 decimal places.
+    '''
     if partition_size >= dataframe_size:
         return [1]
 
@@ -15,7 +18,7 @@ def get_weights(dataframe_size: int, partition_size: int) -> list:
     print(weight, num_partitions)
     if num_partitions.is_integer():
         return [weight] * int(num_partitions)
-    
+
     # Number of partitions has a decimal portion. Try to distribute weight evenly across partitions.
     num_partitions = math.ceil(num_partitions)
     weight = round(1 / num_partitions, 2)
@@ -26,4 +29,3 @@ def get_weights(dataframe_size: int, partition_size: int) -> list:
     weights.append(round(weights.pop() + diff, 2))
 
     return weights
-
